@@ -4,7 +4,7 @@ from torch.autograd import Variable
 
 
 class Network:
-    def __init__(self, data, labels, learning_rate=1e-5, H=100, n_iterations=500):
+    def __init__(self, data, labels, learning_rate=1e-5, H=100, n_iterations=100):
 
         # N is batch size; D_in is input dimension;
         # H is hidden dimension; D_out is output dimension.

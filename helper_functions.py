@@ -12,10 +12,10 @@ def readData(filenames):
     csv_data = pd.concat(data_partitions)   #merge files into single datastructure
     csv_data = csv_data.dropna()    #remove entries that contain NaN
 
-    data = csv_data.loc[:,'TRACK_POSITION':]
+    data = csv_data.loc[:,'SPEED':]
     data = data.as_matrix()
 
-    labels = csv_data.loc[:, :'SPEED']
+    labels = csv_data.loc[:, :'STEERING']
     labels = labels.as_matrix()
 
     return data, labels

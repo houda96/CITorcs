@@ -93,7 +93,7 @@ class MyDriver(Driver):
             self.set = True
 
         fh = open("cooperation" + str(self.id) + ".txt","w")
-        write(str(self.id) + ": " + str(carstate.distance_raced))
+        fh.write(str(self.id) + ": " + str(carstate.distance_raced))
         fh.close()
 
         fh = open(self.co_car,"r")

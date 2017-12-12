@@ -1,11 +1,10 @@
 from pytocl.driver import Driver
 from pytocl.car import State, Command
 import numpy as np
-#from network_regularized import Network
-from network import Network
+from network_regularized import Network
+#from network import Network
 import logging
 import helper_functions
-from freestyle import do_the_thing
 import torch
 
 import math
@@ -19,17 +18,17 @@ class MyDriver(Driver):
     def __init__(self, logdata=True):
         # filenames = ['aalborg.csv', 'alpine-1.csv', 'f-speedway.csv', 'data_track_2.csv']
         #filenames = ['aalborg.csv', 'alpine-1.csv', 'f-speedway.csv']
-        filenames = ['forza_urja.csv', 'newdata5.csv', 'aalborg_urja.csv']
+        #filenames = ['forza_urja.csv', 'newdata5.csv', 'aalborg_urja.csv']
         #, 'aalborg_urja.csv', 'aalborg_urja_vx80.csv']
         #filenames = ['aalborg_new.csv', 'forza_new.csv']
-        data, labels = helper_functions.readData(filenames)
-        # self.network = do_the_thing(data, labels)
+        #data, labels = helper_functions.readData(filenames)
         learning_rate = 1e-6
         #self.network = Network(data, labels, learning_rate)
         #self.network.train()
         
-        #torch.save(self.network, 'current_network.pt')
-        self.network = torch.load('good networks/current_network_17_WINEF.pt')
+        #torch.save(self.network, 'current_network_reg.pt')
+        #self.network = torch.load('current_network_17_WINEF.pt')
+        self.network = torch.load('current_network_reg.pt')
 
         self.steering_ctrl = CompositeController(
             ProportionalController(0.4),

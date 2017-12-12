@@ -5,7 +5,7 @@ import torch.optim as optim
 
 
 class Network:
-    def __init__(self, data, labels, learning_rate=1e-6, H=10, n_iterations=20000):
+    def __init__(self, data, labels, learning_rate=1e-6, H=15, n_iterations=750):
 
         # N is batch size; D_in is input dimension;
         # H is hidden dimension; D_out is output dimension.
@@ -32,9 +32,7 @@ class Network:
         # linear function, and holds internal Variables for its weight and bias.
         self.model = torch.nn.Sequential(
                   torch.nn.Linear(self.D_in, self.H),
-                  torch.nn.ReLU(),
-                  #torch.nn.Linear(self.H, self.H),
-                  #torch.nn.Tanh(),
+                  torch.nn.Tanh(),
                   torch.nn.Linear(self.H, self.D_out),
                 )
 
@@ -100,5 +98,5 @@ class Network:
 
 
     def forward(self, datapoint):
-        x = Variable(torch.Tensor(datapoint))
-        return self.model(x)
+        x = Variable(torch.Tensor(datapoint)).view(1,-1)
+        return self.model(x).view(1,-1)
